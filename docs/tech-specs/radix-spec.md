@@ -1,5 +1,39 @@
 # Radix UI Implementation Specification
 
+## Index Header
+This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+
+### Document Structure
+- Overview: Line ~30
+- Version and Documentation: Line ~40
+- Architecture Overview: Line ~50
+- Installation and Setup: Line ~70
+
+### Core Components
+- Dialog: Line ~90
+- Dropdown Menu: Line ~120
+- Tabs: Line ~150
+- Styling Approaches: Line ~180
+
+### Advanced Usage
+- Accessibility Features: Line ~210
+- Controlled Components: Line ~240
+- Composition with Libraries: Line ~260
+- Custom Styling: Line ~280
+
+### Technical Considerations
+- Performance Optimization: Line ~310
+- Testing Strategies: Line ~340
+- Best Practices: Line ~370
+
+## References
+
+- [Radix UI Documentation](https://www.radix-ui.com/docs/primitives/overview/introduction)
+- [Radix UI GitHub Repository](https://github.com/radix-ui/primitives)
+- [Radix UI Examples](https://www.radix-ui.com/docs/primitives/overview/examples)
+- [Radix UI Accessibility](https://www.radix-ui.com/docs/primitives/overview/accessibility)
+- [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/)
+
 ## Overview
 
 This document provides a technical overview of Radix UI, a collection of low-level, unstyled, and accessible UI primitives that serve as the foundation for building robust design systems and component libraries. Radix UI focuses on functionality, accessibility, and developer experience while leaving styling decisions to the implementation.
@@ -608,11 +642,3 @@ describe('DialogExample', () => {
 - Memoize complex components
 - Use virtualization for large lists
 - Avoid unnecessary re-renders with controlled components
-
-## References
-
-- [Radix UI Documentation](https://www.radix-ui.com/docs/primitives/overview/introduction)
-- [Radix UI GitHub Repository](https://github.com/radix-ui/primitives)
-- [Radix UI Examples](https://www.radix-ui.com/docs/primitives/overview/examples)
-- [Radix UI Accessibility](https://www.radix-ui.com/docs/primitives/overview/accessibility)
-- [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/) 

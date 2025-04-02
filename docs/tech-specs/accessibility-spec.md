@@ -1,5 +1,38 @@
 # Accessibility Technical Specification
 
+## Index Header
+This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+
+### Document Structure
+- Overview: Line ~30
+- Standards and Guidelines: Line ~40
+- Implementation: Line ~50
+  - Semantic HTML: Line ~60
+  - ARIA Attributes: Line ~90
+  - Keyboard Navigation: Line ~120
+- Testing: Line ~150
+  - Automated Testing: Line ~160
+  - Manual Testing: Line ~190
+
+### Best Practices
+- Color and Contrast: Line ~220
+- Focus Management: Line ~250
+- Screen Reader Support: Line ~280
+- Form Accessibility: Line ~310
+
+### Additional Information
+- Tooling: Line ~340
+
+## References
+
+- [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG21/)
+- [WAI-ARIA Authoring Practices 1.2](https://www.w3.org/TR/wai-aria-practices-1.2/)
+- [MDN Web Docs - Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)
+- [A11y Project](https://www.a11yproject.com/)
+- [Inclusive Components](https://inclusive-components.design/)
+- [React Accessibility](https://reactjs.org/docs/accessibility.html)
+- [Next.js Accessibility](https://nextjs.org/docs/advanced-features/accessibility)
+
 ## Overview
 
 This document provides a technical overview of our accessibility implementation, following the **Agent Narrative Framework** principles. Our accessibility strategy ensures that our applications are usable by people with a wide range of abilities, adhering to WCAG 2.1 AA standards and leveraging the complementary relationship between semantic HTML and ARIA attributes.
@@ -680,13 +713,3 @@ describe('Navigation Component', () => {
 - Group related form controls with `<fieldset>` and `<legend>`
 - Provide clear error messages
 - Use appropriate input types
-
-## References
-
-- [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG21/)
-- [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/)
-- [MDN Web Docs: ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)
-- [The A11Y Project](https://www.a11yproject.com/)
-- [Inclusive Components](https://inclusive-components.design/)
-- [HTML5 Accessibility](https://www.html5accessibility.com/)
-- [Next.js Accessibility](https://nextjs.org/docs/advanced-features/accessibility) 

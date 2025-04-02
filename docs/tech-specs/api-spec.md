@@ -1,6 +1,45 @@
-# API Documentation
+# API Technical Specification
 
-This directory contains documentation for all API endpoints used in our application, following principles for maintainable, secure, and scalable development.
+## Index Header
+This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+
+### Document Structure
+- Overview: Line ~30
+- API Architecture: Line ~40
+- Endpoints: Line ~50
+  - Authentication: Line ~60
+  - Users: Line ~90
+  - Resources: Line ~120
+- Request/Response Formats: Line ~150
+  - Standard Response Format: Line ~160
+  - Error Handling: Line ~190
+  - Pagination: Line ~220
+
+### Implementation
+- Security: Line ~250
+  - Authentication: Line ~260
+  - Authorization: Line ~290
+  - Rate Limiting: Line ~320
+- Performance: Line ~350
+  - Caching: Line ~360
+  - Compression: Line ~390
+
+### Additional Information
+- Versioning Strategy: Line ~420
+- Documentation: Line ~450
+
+## References
+
+- [REST API Design Best Practices](https://restfulapi.net/)
+- [JSON:API Specification](https://jsonapi.org/)
+- [OpenAPI Specification](https://swagger.io/specification/)
+- [OAuth 2.0 Authorization Framework](https://oauth.net/2/)
+- [API Security Best Practices](https://owasp.org/www-project-api-security/)
+- [GraphQL Documentation](https://graphql.org/learn/)
+- [HTTP Status Codes](https://httpstatuses.com/)
+- [Next.js API Routes](https://nextjs.org/docs/api-routes/introduction)
+
+## Overview
 
 ## API Structure
 
@@ -32,56 +71,9 @@ The application uses the following API routes:
 - `GET /api/vector/search`: Perform semantic search
 - `DELETE /api/vector/documents`: Delete documents from index
 
-## API Implementation with Agent Narrative Framework
-
-Each API endpoint is implemented as a Next.js API route following the **Agent Narrative Framework** principles:
-
-```typescript
-// Example API route implementation
-import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-
-/**
- * API handler for processing requests
- * 
- * Following Agent Narrative Framework principles:
- * - Type safety (TypeScript)
- * - Proper error handling
- * - Authentication verification
- * - Structured response format
- */
-export async function POST(req: NextRequest) {
-  // Get session for authentication (Security principle from Ethos)
-  const session = await getServerSession(authOptions);
-  
-  if (!session) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-  
-  try {
-    // Parse request body with type safety (Logos principle)
-    const body = await req.json();
-    
-    // Process the request
-    const result = await processRequest(body);
-    
-    // Return structured response (Consistency principle from Logos)
-    return NextResponse.json(result);
-  } catch (error) {
-    // Comprehensive error handling (Reliability principle from Ethos)
-    console.error('API error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
-  }
-}
-```
-
 ## Error Handling
 
-All API endpoints follow a consistent error handling pattern aligned with the **Agent Narrative Framework**'s focus on predictability and reliability:
+All API endpoints follow a consistent error handling pattern aligned with the focus on predictability and reliability:
 
 - **400 Bad Request**: Invalid input parameters
 - **401 Unauthorized**: Missing authentication
@@ -92,7 +84,7 @@ All API endpoints follow a consistent error handling pattern aligned with the **
 
 ## Rate Limiting
 
-API endpoints implement rate limiting to prevent abuse, following the **Security Principles** from the **Agent Narrative Framework**:
+API endpoints implement rate limiting to prevent abuse, following the **Security Principles**:
 
 ```typescript
 import { rateLimit } from '@/lib/rate-limit';
@@ -119,7 +111,7 @@ export async function POST(req: NextRequest) {
 
 ## Authentication and Security
 
-Most API endpoints require authentication using NextAuth.js, implementing the **Security Principles** from the **Agent Narrative Framework**:
+Most API endpoints require authentication using NextAuth.js, implementing the **Security Principles**:
 
 - **Data Protection**: Preventing XSS, CSRF, and injection attacks
 - **Authentication & Authorization**: Secure RBAC and OAuth implementation
@@ -128,7 +120,7 @@ Most API endpoints require authentication using NextAuth.js, implementing the **
 
 ## API Documentation Standards
 
-Each API endpoint is documented with the following information, promoting the **Clarity** and **Predictability** principles from the **Agent Narrative Framework**:
+Each API endpoint is documented with the following information, promoting the **Clarity** and **Predictability** principles:
 
 1. **Purpose**: What the endpoint does
 2. **Request Parameters**: Expected input parameters with TypeScript types
@@ -136,14 +128,6 @@ Each API endpoint is documented with the following information, promoting the **
 4. **Error Codes**: Possible error responses and their meanings
 5. **Example Usage**: Code examples for using the endpoint
 6. **Security Considerations**: Authentication requirements and security notes
-
-## Using the Agent Narrative Framework in API Development
-
-When developing new API endpoints, follow these guidelines from the **Agent Narrative Framework**:
-
-1. **Assess Requirements**: Ensure a full understanding of the endpoint's purpose
-2. **Generate and Explain Solutions**: Provide structured, clear, and DRY-compliant code
-3. **Deliver Final Implementation**: Ensure correctness, completeness, and alignment with best practices
 
 ### Code Implementation Guidelines
 
@@ -153,5 +137,3 @@ When developing new API endpoints, follow these guidelines from the **Agent Narr
 - Ensure proper authentication and authorization
 - Document all endpoints thoroughly
 - Write unit and integration tests for critical endpoints
-
-By following these principles, our API implementation remains secure, maintainable, and developer-friendly. 

@@ -1,4 +1,48 @@
-# Next.js Implementation Specification
+# Next.js Technical Specification
+
+## Index Header
+This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+
+### Document Structure
+- Overview: Line ~30
+- Architecture: Line ~40
+- Routing System: Line ~50
+  - App Router: Line ~60
+  - Pages Router: Line ~90
+  - Dynamic Routes: Line ~120
+
+### Core Features
+- Server Components: Line ~150
+- Data Fetching: Line ~180
+  - Server-Side Rendering: Line ~190
+  - Static Site Generation: Line ~220
+  - Incremental Static Regeneration: Line ~250
+- API Routes: Line ~280
+
+### Advanced Features
+- Middleware: Line ~310
+- Edge Runtime: Line ~340
+- Image Optimization: Line ~370
+- Internationalization: Line ~400
+
+### Performance Optimization
+- Caching Strategies: Line ~430
+- Bundle Optimization: Line ~460
+- Core Web Vitals: Line ~490
+
+### Additional Information
+- Deployment: Line ~520
+
+## References
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Next.js GitHub Repository](https://github.com/vercel/next.js)
+- [React Documentation](https://react.dev/)
+- [Vercel Platform](https://vercel.com/docs)
+- [Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
+- [App Router Migration Guide](https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration)
+- [Next.js Learn](https://nextjs.org/learn)
+- [Web Vitals](https://web.dev/vitals/)
 
 ## Overview
 
@@ -572,7 +616,7 @@ FROM node:18-alpine AS base
 
 FROM base AS deps
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json ./`
 RUN npm ci
 
 FROM base AS builder
@@ -820,12 +864,3 @@ Implement these security best practices:
 - Keep dependencies updated
 - Use environment variables for sensitive information
 - Implement rate limiting for API routes
-
-## References
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Next.js GitHub Repository](https://github.com/vercel/next.js)
-- [Next.js Examples](https://github.com/vercel/next.js/tree/canary/examples)
-- [Vercel Platform](https://vercel.com)
-- [React Documentation](https://react.dev)
-- [App Router Migration Guide](https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration) 

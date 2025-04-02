@@ -1,5 +1,43 @@
 # Shadcn UI Implementation Specification
 
+## Index Header
+This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+
+### Document Structure
+- Overview: Line ~30
+- Version and Documentation: Line ~40
+- Architecture Overview: Line ~50
+- Installation and Setup: Line ~70
+  - Prerequisites: Line ~80
+  - Installation Steps: Line ~90
+- Component Organization: Line ~120
+- Key Components and Usage Patterns: Line ~140
+  - Button Component: Line ~150
+  - Search Bar Component: Line ~180
+  - Card Component: Line ~200
+- Customization Strategies: Line ~230
+  - Using Class Variance Authority: Line ~240
+  - Extending Components: Line ~270
+  - Theming: Line ~300
+- Performance Considerations: Line ~330
+  - Component Memoization: Line ~340
+  - Dynamic Imports: Line ~360
+- Testing Strategies: Line ~380
+- Best Practices: Line ~410
+  - Component Naming: Line ~420
+  - File Structure: Line ~440
+  - Styling: Line ~460
+  - Accessibility: Line ~480
+  - Reusability: Line ~500
+
+## References
+
+- [Shadcn UI Documentation](https://ui.shadcn.com/docs)
+- [Radix UI Documentation](https://www.radix-ui.com/docs/primitives)
+- [TailwindCSS Documentation](https://tailwindcss.com/docs)
+- [Class Variance Authority](https://cva.style/docs)
+- [Lucide Icons](https://lucide.dev/icons/)
+
 ## Overview
 
 This document provides a technical overview of Shadcn UI, a collection of accessible, customizable UI components built on top of Radix UI primitives with TailwindCSS styling. Shadcn UI offers a unique approach to component libraries by providing components that are copied into your project rather than imported as dependencies.
@@ -237,7 +275,6 @@ Shadcn UI uses `class-variance-authority` for component variants:
 ```tsx
 import { cva, type VariantProps } from "class-variance-authority"
 
-// Define variants
 const badgeVariants = cva(
   "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
@@ -255,7 +292,6 @@ const badgeVariants = cva(
   }
 )
 
-// Use in component
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof badgeVariants> {}
@@ -325,7 +361,6 @@ module.exports = {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
-        // Add more custom colors...
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -349,7 +384,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 interface StatCardProps {
   title: string
-  value: string | number
+  value: string or number
   icon: React.ReactNode
 }
 
@@ -378,10 +413,9 @@ Use dynamic imports for larger components:
 ```tsx
 import dynamic from "next/dynamic"
 
-// Dynamically import a complex component
 const DataTable = dynamic(() => import("@/components/data-table"), {
   loading: () => <div>Loading table...</div>,
-  ssr: false, // Disable server-side rendering if needed
+  ssr: false,
 })
 ```
 
@@ -475,4 +509,4 @@ describe("Button", () => {
 - [Radix UI Documentation](https://www.radix-ui.com/docs/primitives)
 - [TailwindCSS Documentation](https://tailwindcss.com/docs)
 - [Class Variance Authority](https://cva.style/docs)
-- [Lucide Icons](https://lucide.dev/icons/) 
+- [Lucide Icons](https://lucide.dev/icons/)

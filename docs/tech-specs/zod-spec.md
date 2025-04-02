@@ -1,5 +1,39 @@
 # Zod Technical Specification
 
+## Index Header
+This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+
+### Document Structure
+- Overview: Line ~30
+- Core Features: Line ~40
+- Basic Schema Types: Line ~60
+- Complex Schemas: Line ~100
+  - Objects: Line ~110
+  - Arrays: Line ~150
+  - Unions and Intersections: Line ~190
+- Validation and Parsing: Line ~230
+  - Schema Validation: Line ~240
+  - Error Handling: Line ~280
+- Integration with React: Line ~320
+  - Form Validation: Line ~330
+  - React Hook Form: Line ~370
+- Advanced Features: Line ~420
+  - Custom Validators: Line ~430
+  - Transformations: Line ~470
+  - Recursive Schemas: Line ~510
+- TypeScript Integration: Line ~550
+- Performance Considerations: Line ~600
+- Testing: Line ~640
+
+## References
+
+- [Zod Documentation](https://zod.dev/)
+- [Zod GitHub Repository](https://github.com/colinhacks/zod)
+- [React Hook Form with Zod](https://react-hook-form.com/get-started#SchemaValidation)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+- [Zod Examples](https://zod.dev/?id=basic-usage)
+- [Zod Editor Plugin](https://github.com/colinhacks/zod-vscode)
+
 ## Overview
 
 This document provides a technical overview of Zod implementation within our application. Zod is a TypeScript-first schema declaration and validation library designed to make data validation type-safe and developer-friendly.
@@ -644,11 +678,3 @@ describe('User Schemas', () => {
 - **Error Messages**: Avoid exposing sensitive information in error messages
 - **Performance**: Be mindful of complex schemas that might impact performance
 - **Default Values**: Use defaults carefully to avoid security issues
-
-## References
-
-- [Zod Documentation](https://zod.dev/)
-- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
-- [React Hook Form with Zod](https://react-hook-form.com/get-started#SchemaValidation)
-- [Next.js API Routes](https://nextjs.org/docs/api-routes/introduction)
-- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html) 

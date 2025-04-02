@@ -1,5 +1,40 @@
 # REST API Technical Specification
 
+## Index Header
+This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+
+### Document Structure
+- Overview: Line ~30
+- REST API Design Principles: Line ~40
+  - Resource-Oriented Architecture: Line ~50
+  - HTTP Methods: Line ~70
+  - URL Structure: Line ~90
+  - Status Codes: Line ~110
+- Request and Response Formats: Line ~140
+  - Content Types: Line ~150
+  - Request Format: Line ~170
+  - Response Format: Line ~190
+- Authentication and Authorization: Line ~230
+  - Authentication Methods: Line ~240
+  - Authorization: Line ~300
+- Rate Limiting: Line ~340
+- Versioning Strategy: Line ~380
+- API Documentation: Line ~410
+- Implementation in Next.js: Line ~450
+- Testing Strategy: Line ~500
+- Performance Considerations: Line ~540
+- Security Best Practices: Line ~570
+- Monitoring and Observability: Line ~600
+
+## References
+
+- [REST API Design Best Practices](https://restfulapi.net/)
+- [OWASP API Security Top 10](https://owasp.org/www-project-api-security/)
+- [JSON:API Specification](https://jsonapi.org/)
+- [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Next.js API Routes Documentation](https://nextjs.org/docs/api-routes/introduction)
+- [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+
 ## Overview
 
 This document provides a technical overview of our REST API implementation, following the **Agent Narrative Framework** principles. Our REST API serves as the communication layer between client applications and server-side resources, enabling standardized data exchange and operation execution.
@@ -881,4 +916,4 @@ Following the **Security Principles** from the **Agent Narrative Framework**:
 - [JSON:API Specification](https://jsonapi.org/)
 - [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
 - [Next.js API Routes Documentation](https://nextjs.org/docs/api-routes/introduction)
-- [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 
+- [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)

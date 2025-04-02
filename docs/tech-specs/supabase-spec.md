@@ -1,5 +1,43 @@
 # Supabase Technical Specification
 
+## Index Header
+This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+
+### Document Structure
+- Overview: Line ~30
+- Supabase Core Components: Line ~40
+  - PostgreSQL Database: Line ~50
+  - Authentication System: Line ~80
+  - Storage: Line ~110
+  - Realtime: Line ~140
+  - Edge Functions: Line ~170
+
+### Implementation
+- Database Access: Line ~200
+- Authentication Implementation: Line ~230
+- Middleware for Auth Protection: Line ~260
+- Database Operations: Line ~290
+- Storage Implementation: Line ~330
+- Realtime Implementation: Line ~360
+
+### Database Design
+- Schema Design: Line ~390
+- TypeScript Type Definitions: Line ~420
+- Security Best Practices: Line ~450
+- Performance Considerations: Line ~480
+- Testing Strategy: Line ~510
+
+## References
+
+- [Supabase Documentation](https://supabase.com/docs)
+- [Next.js with Supabase](https://supabase.com/docs/guides/getting-started/quickstarts/nextjs)
+- [Supabase Auth Helpers for Next.js](https://supabase.com/docs/guides/auth/auth-helpers/nextjs)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [Row-Level Security in PostgreSQL](https://supabase.com/docs/guides/auth/row-level-security)
+- [Supabase Storage](https://supabase.com/docs/guides/storage)
+- [Supabase Realtime](https://supabase.com/docs/guides/realtime)
+- [Supabase Edge Functions](https://supabase.com/docs/guides/functions)
+
 ## Overview
 
 This document provides a technical overview of our Supabase implementation, following the **Agent Narrative Framework** principles. Supabase serves as our serverless backend platform, providing PostgreSQL database, authentication, storage, and real-time capabilities to power our applications with minimal configuration.
@@ -919,14 +957,3 @@ describe('Queries API', () => {
   // Similar tests for POST, PUT/PATCH, and DELETE
 });
 ```
-
-## References
-
-- [Supabase Documentation](https://supabase.com/docs)
-- [Next.js with Supabase](https://supabase.com/docs/guides/getting-started/quickstarts/nextjs)
-- [Supabase Auth Helpers for Next.js](https://supabase.com/docs/guides/auth/auth-helpers/nextjs)
-- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
-- [Row-Level Security in PostgreSQL](https://supabase.com/docs/guides/auth/row-level-security)
-- [Supabase Storage](https://supabase.com/docs/guides/storage)
-- [Supabase Realtime](https://supabase.com/docs/guides/realtime)
-- [Supabase Edge Functions](https://supabase.com/docs/guides/functions)

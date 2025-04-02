@@ -1,5 +1,47 @@
 # OpenAI API Technical Specification
 
+## Index Header
+This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+
+### Document Structure
+- Overview: Line ~30
+- API Reference: Line ~40
+- Core Endpoints: Line ~50
+  - Chat Completions API: Line ~60
+  - Response Formats: Line ~80
+
+### Implementation
+- Authentication: Line ~100
+- Making Requests: Line ~120
+- Streaming Responses: Line ~150
+- Error Handling: Line ~180
+
+### Advanced Features
+- Function Calling: Line ~210
+- Vision Capabilities: Line ~240
+- Fine-tuning: Line ~270
+- Embeddings: Line ~300
+
+### Best Practices
+- Prompt Engineering: Line ~330
+- Rate Limiting: Line ~360
+- Cost Optimization: Line ~390
+- Security: Line ~420
+
+### Additional Information
+- SDKs and Libraries: Line ~450
+
+## References
+
+- [OpenAI API Documentation](https://platform.openai.com/docs/introduction)
+- [OpenAI Node.js SDK](https://github.com/openai/openai-node)
+- [OpenAI Python SDK](https://github.com/openai/openai-python)
+- [Chat Completions API](https://platform.openai.com/docs/api-reference/chat)
+- [Models Overview](https://platform.openai.com/docs/models)
+- [OpenAI Cookbook](https://github.com/openai/openai-cookbook)
+- [OpenAI Usage Policies](https://openai.com/policies/usage-policies)
+- [Rate Limits](https://platform.openai.com/docs/guides/rate-limits)
+
 ## Overview
 
 This document provides a technical overview of OpenAI's API capabilities, integration patterns, and best practices. OpenAI offers powerful AI models that can be integrated into applications for natural language processing, content generation, image creation, and more.
@@ -554,11 +596,3 @@ const functionCallingExample = async (query: string) => {
 - Cache responses to minimize API calls
 - Use tiered model selection based on query complexity
 - Implement fallback to cheaper models when appropriate
-
-## References
-
-- [OpenAI API Documentation](https://platform.openai.com/docs/api-reference)
-- [OpenAI Cookbook](https://github.com/openai/openai-cookbook)
-- [OpenAI Usage Policies](https://openai.com/policies/usage-policies)
-- [Best Practices for API Key Safety](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety)
-- [OpenAI Node.js SDK](https://github.com/openai/openai-node) 
