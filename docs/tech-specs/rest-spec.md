@@ -1,7 +1,7 @@
 # REST API Technical Specification
 
 ## Index Header
-This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+This index provides quick navigation reference points for Agents to locate specific information in this document.
 
 ### Document Structure
 - Overview: Line ~30
@@ -37,7 +37,7 @@ This index provides quick navigation reference points for LLM readers to locate 
 
 ## Overview
 
-This document provides a technical overview of our REST API implementation, following the **Agent Narrative Framework** principles. Our REST API serves as the communication layer between client applications and server-side resources, enabling standardized data exchange and operation execution.
+This document provides a technical overview of our REST API implementation, Our REST API serves as the communication layer between client applications and server-side resources, enabling standardized data exchange and operation execution.
 
 ## REST API Design Principles
 

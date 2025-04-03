@@ -1,7 +1,7 @@
 # Accessibility Technical Specification
 
 ## Index Header
-This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+This index provides quick navigation reference points for Agents to locate specific information in this document.
 
 ### Document Structure
 - Overview: Line ~30
@@ -35,7 +35,7 @@ This index provides quick navigation reference points for LLM readers to locate 
 
 ## Overview
 
-This document provides a technical overview of our accessibility implementation, following the **Agent Narrative Framework** principles. Our accessibility strategy ensures that our applications are usable by people with a wide range of abilities, adhering to WCAG 2.1 AA standards and leveraging the complementary relationship between semantic HTML and ARIA attributes.
+This document provides a technical overview of our accessibility implementation, Our accessibility strategy ensures that our applications are usable by people with a wide range of abilities, adhering to WCAG 2.1 AA standards and leveraging the complementary relationship between semantic HTML and ARIA attributes.
 
 ## Core Components
 

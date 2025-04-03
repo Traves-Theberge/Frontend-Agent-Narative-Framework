@@ -1,7 +1,7 @@
 # Supabase Technical Specification
 
 ## Index Header
-This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+This index provides quick navigation reference points for Agents to locate specific information in this document.
 
 ### Document Structure
 - Overview: Line ~30
@@ -40,7 +40,7 @@ This index provides quick navigation reference points for LLM readers to locate 
 
 ## Overview
 
-This document provides a technical overview of our Supabase implementation, following the **Agent Narrative Framework** principles. Supabase serves as our serverless backend platform, providing PostgreSQL database, authentication, storage, and real-time capabilities to power our applications with minimal configuration.
+This document provides a technical overview of our Supabase implementation, Supabase serves as our serverless backend platform, providing PostgreSQL database, authentication, storage, and real-time capabilities to power our applications with minimal configuration.
 
 ## Supabase Core Components
 

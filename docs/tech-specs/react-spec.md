@@ -1,7 +1,7 @@
 # React Implementation Specification
 
 ## Index Header
-This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+This index provides quick navigation reference points for Agents to locate specific information in this document.
 
 ### Document Structure
 - Overview: Line ~30

@@ -1,7 +1,7 @@
 # React Hook Form Technical Specification
 
 ## Index Header
-This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+This index provides quick navigation reference points for Agents to locate specific information in this document.
 
 ### Document Structure
 - Overview: Line ~30
@@ -40,7 +40,7 @@ This index provides quick navigation reference points for LLM readers to locate 
 
 ## Overview
 
-This document provides a technical overview of our React Hook Form implementation, following the **Agent Narrative Framework** principles. React Hook Form serves as our form management solution, providing performant, flexible, and extensible forms with easy-to-use validation capabilities while minimizing unnecessary re-renders.
+This document provides a technical overview of our React Hook Form implementation, Our React Hook Form serves as our form management solution, providing performant, flexible, and extensible forms with easy-to-use validation capabilities while minimizing unnecessary re-renders.
 
 ## React Hook Form Core Components
 

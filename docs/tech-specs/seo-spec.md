@@ -1,7 +1,7 @@
 # SEO Technical Specification
 
 ## Index Header
-This index provides quick navigation reference points for LLM readers to locate specific information in this document.
+This index provides quick navigation reference points for Agents to locate specific information in this document.
 
 ### Document Structure
 - Overview: Line ~30
@@ -38,7 +38,7 @@ This index provides quick navigation reference points for LLM readers to locate 
 
 ## Overview
 
-This document provides a technical overview of our Search Engine Optimization (SEO) implementation, following the **Agent Narrative Framework** principles. Our SEO strategy serves as the foundation for ensuring our applications are discoverable, indexable, and rankable by search engines, driving organic traffic and improving user acquisition.
+This document provides a technical overview of our Search Engine Optimization (SEO) implementation, Our SEO strategy serves as the foundation for ensuring our applications are discoverable, indexable, and rankable by search engines, driving organic traffic and improving user acquisition.
 
 ## SEO Core Components
 
