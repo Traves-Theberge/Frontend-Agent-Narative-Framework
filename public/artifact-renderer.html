@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artifact Renderer</title>
+    <!-- Include React and ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- REMOVE html2canvas -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script> -->
+
+    <!-- Link to main app CSS -->
+    <link rel="stylesheet" href="/globals.css">
+
+    <!-- ADD Tailwind Play CDN (for debugging) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Basic Styling -->
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            background-color: #fff; /* Default background */
+            color: #000; /* Default text */
+        }
+        #root {
+            padding: 1rem; 
+            height: 100%;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+         .error-message {
+            color: #dc2626;
+            background-color: rgba(220, 38, 38, 0.1);
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            border: 1px solid #dc2626;
+        }
+         .error-message pre {
+             font-size: 0.75rem;
+             white-space: pre-wrap;
+             margin-top: 0.5rem;
+         }
+         .loading-message {
+             font-style: italic;
+             color: #666;
+         }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <p class="loading-message">Initializing Artifact Renderer...</p>
+    </div>
+
+    <script>
+        console.log("[artifact-renderer.html] Script execution started.");
+
+        // --- Global Setup ---
+        const rootElement = document.getElementById('root');
+        let currentReactRoot = null;
+        let parentOrigin = null;
+        let worker = null;
+        let isProcessing = false;
+        
+        // --- Component/Hook Registry (will be populated by parent or globally available) ---
+        // We need to make Button and Input available. Since they are complex components,
+        // exposing them directly from the main app bundle is tricky without shared context.
+        // For now, we'll assume they might be globally available IF the parent sets them up,
+        // or provide very basic placeholders.
+        const componentRegistry = {
+            Button: (props) => React.createElement('button', props, props.children),
+            Input: (props) => React.createElement('input', props),
+            useState: React.useState,
+            useEffect: React.useEffect,
+            useRef: React.useRef,
+            useCallback: React.useCallback
+        };
+        window.Button = componentRegistry.Button;
+        window.Input = componentRegistry.Input;
+        window.useState = componentRegistry.useState;
+        window.useEffect = componentRegistry.useEffect;
+        window.useRef = componentRegistry.useRef;
+        window.useCallback = componentRegistry.useCallback;
+        console.log("[artifact-renderer.html] Basic Button/Input placeholders and React hooks exposed globally.");
+
+        // --- Utility Functions ---
+        function displayError(message) {
+            if (rootElement) {
+                rootElement.innerHTML = `
+                    <div class="error-message">
+                        <strong>Rendering Error:</strong>
+                        <pre>${message || 'Unknown error'}</pre>
+                    </div>
+                `;
+            }
+            console.error("[artifact-renderer.html] Error:", message);
+            // Clean up any previous React root
+            if (currentReactRoot) {
+                currentReactRoot.unmount();
+                currentReactRoot = null;
+            }
+        }
+
+        function displayLoading(message = 'Processing artifact code...') {
+            if (rootElement) {
+                rootElement.innerHTML = `<p class="loading-message">${message}</p>`;
+            }
+            // Clean up any previous React root
+            if (currentReactRoot) {
+                currentReactRoot.unmount();
+                currentReactRoot = null;
+            }
+        }
+        
+        function postMessageToParent(message) {
+            if (parentOrigin) {
+                console.log("[artifact-renderer.html] Posting message to parent:", message.type, message.payload || '');
+                window.parent.postMessage(message, parentOrigin);
+            } else {
+                 console.warn("[artifact-renderer.html] Cannot post message, parent origin not set.");
+            }
+        }
+
+        // --- Component Rendering Logic ---
+        async function renderComponentFromCode(transformedCode) {
+            if (!rootElement) return displayError("Root element not found");
+            if (!window.ReactDOM) return displayError("ReactDOM not loaded");
+            if (!window.React) return displayError("React not loaded");
+
+            console.log("[artifact-renderer.html] Attempting to render component from transformed code.");
+            displayLoading("Rendering component..."); // Show rendering state
+            let blobUrl = null;
+
+            try {
+                const blob = new Blob([transformedCode], { type: 'text/javascript' });
+                blobUrl = URL.createObjectURL(blob);
+                console.log(`[artifact-renderer.html] Dynamically importing from Blob URL: ${blobUrl}`);
+                
+                // IMPORTANT: Ensure React is globally available before import!
+                if (!window.React) throw new Error('React not found on window');
+
+                const artifactModule = await import(/* webpackIgnore: true */ blobUrl);
+                console.log('[artifact-renderer.html] Blob import successful. Module:', artifactModule);
+                const Component = artifactModule.default;
+                
+                if (!Component || typeof Component !== 'function') {
+                    throw new Error('Artifact code did not have a valid default export component.');
+                }
+
+                if (!currentReactRoot) {
+                    currentReactRoot = ReactDOM.createRoot(rootElement);
+                }
+                // Render using React.createElement
+                currentReactRoot.render(React.createElement(Component));
+                console.log("[artifact-renderer.html] Component rendered successfully.");
+                // Clear loading/error messages implicitly by rendering over them
+
+            } catch (renderError) {
+                console.error("[artifact-renderer.html] Error importing/rendering component:", renderError);
+                displayError(`Failed to load or render artifact: ${renderError.message}`);
+            } finally {
+                 if (blobUrl) {
+                     URL.revokeObjectURL(blobUrl);
+                     console.log(`[artifact-renderer.html] Revoked Blob URL: ${blobUrl}`);
+                 }
+            }
+        }
+        
+        // --- Worker Logic ---
+        function initializeWorker() {
+            console.log("[artifact-renderer.html] Initializing Artifact Worker...");
+            try {
+                worker = new Worker('/artifact-worker.js'); 
+                worker.onmessage = handleWorkerMessage;
+                worker.onerror = handleWorkerError;
+                console.log("[artifact-renderer.html] Worker initialized and listeners attached.");
+            } catch (err) {
+                 console.error("[artifact-renderer.html] Failed to initialize worker:", err);
+                 displayError(`Failed to initialize background worker: ${err.message}`);
+            }
+        }
+        
+        function handleWorkerMessage(event) {
+             console.log("[artifact-renderer.html] Received message from worker:", event.data?.type);
+             isProcessing = false;
+             const message = event.data;
+
+             switch(message?.type) {
+                 case 'TRANSFORM_SUCCESS':
+                     renderComponentFromCode(message.payload.transformedCode);
+                     break;
+                 case 'TRANSFORM_ERROR':
+                     displayError(`Failed to process artifact code: ${message.payload.error}`);
+                     break;
+                 default:
+                    console.warn("[artifact-renderer.html] Unknown message from worker:", message);
+             }
+        }
+        
+        function handleWorkerError(error) {
+             console.error("[artifact-renderer.html] Worker error event:", error);
+             isProcessing = false;
+             displayError(`Worker error: ${error.message || 'Unknown worker issue'}`);
+        }
+
+        // --- Message Handler FROM Parent ---
+        function handleParentMessage(event) {
+            // Store parent origin on first valid message for security
+            if (!parentOrigin && event.data?.type && event.origin !== 'null') {
+                parentOrigin = event.origin;
+                console.log("[artifact-renderer.html] Stored parent origin:", parentOrigin);
+            }
+
+            // Simple origin check (for deployed apps, match against expected parent URL)
+            // if (parentOrigin && event.origin !== parentOrigin) { 
+            //     console.warn(`[artifact-renderer.html] Ignored message from invalid origin: ${event.origin}`);
+            //     return; 
+            // }
+
+            console.log("[artifact-renderer.html] Received message from parent:", event.data);
+            const message = event.data;
+            switch(message?.type) {
+                case 'UPDATE_COMPONENT':
+                    if (!worker) {
+                       displayError("Worker not initialized. Cannot process code.");
+                       return;
+                    }
+                    if (message.payload?.code) {
+                        displayLoading('Processing artifact code...');
+                        isProcessing = true;
+                        worker.postMessage({ type: 'TRANSFORM_CODE', payload: { code: message.payload.code } });
+                    } else {
+                        displayError('Received UPDATE_COMPONENT but no code was provided.');
+                    }
+                    break;
+                default:
+                    console.warn("[artifact-renderer.html] Unknown message type from parent:", message?.type);
+            }
+        }
+
+        // --- Initialization Sequence ---
+        window.addEventListener('message', handleParentMessage);
+        console.log("[artifact-renderer.html] Added parent message listener.");
+        
+        initializeWorker(); // Initialize worker early
+
+        // Send INIT_COMPLETE to parent once setup is done
+        if (window.parent && window.parent !== window) {
+            // Timeout allows parent listener to potentially be ready
+            setTimeout(() => {
+                 console.log("[artifact-renderer.html] Sending INIT_COMPLETE to parent.");
+                 // Send even if worker failed init, parent needs to know frame loaded
+                 window.parent.postMessage({ type: 'INIT_COMPLETE' }, '*'); 
+            }, 50);
+        } else {
+             console.warn("[artifact-renderer.html] No parent window found or same window.");
+        }
+
+        console.log("[artifact-renderer.html] Initial setup script complete. Waiting for messages.");
+
+    </script>
+</body>
+</html> 
